@@ -3483,7 +3483,7 @@ Opcode * ADLParser::opcode_parse(InstructForm *instr) {
   skipws();
   if (_curchar != ')') {
     // Parse primary, secondary, and tertiary opcodes, if provided.
-    if ( ((primary = get_ident_or_literal_constant("primary opcode")) == NULL) ) {
+    if ( (primary = get_ident_or_literal_constant("primary opcode")) == NULL ) {
         parse_err(SYNERR, "primary hex opcode expected at %c\n", _curchar);
         return NULL;
     }
@@ -3492,7 +3492,7 @@ Opcode * ADLParser::opcode_parse(InstructForm *instr) {
       next_char();
       skipws();
       // Parse secondary opcode
-      if ( ((secondary = get_ident_or_literal_constant("secondary opcode")) == NULL) ) {
+      if ( (secondary = get_ident_or_literal_constant("secondary opcode")) == NULL ) {
         parse_err(SYNERR, "secondary hex opcode expected at %c\n", _curchar);
         return NULL;
       }
@@ -3501,7 +3501,7 @@ Opcode * ADLParser::opcode_parse(InstructForm *instr) {
         next_char();
         skipws();
         // Parse tertiary opcode
-        if ( ((tertiary = get_ident_or_literal_constant("tertiary opcode")) == NULL) ) {
+        if ( (tertiary = get_ident_or_literal_constant("tertiary opcode")) == NULL ) {
           parse_err(SYNERR,"tertiary hex opcode expected at %c\n", _curchar);
           return NULL;
         }
@@ -4771,8 +4771,8 @@ int ADLParser::get_int(void) {
   skipws();                       // Skip whitespace before identifier
   start = end = _ptr;             // Start points at first character
   c = *end;                       // Grab character to test
-  while ((c >= '0') && (c <= '9')
-         || ((c == '-') && (end == start))) {
+  while (((c >= '0') && (c <= '9'))
+         || (((c == '-') && (end == start)))) {
     end++;                        // Increment end pointer
     c = *end;                     // Grab character to test
   }
@@ -4810,7 +4810,7 @@ char *ADLParser::get_relation_dup(void) {
   if( (first == '=') || (first == '!') || (first == '<') || (first == '>') ) {
     next_char();
     char second = *_ptr;          // the second character
-    if( (second == '=') ) {
+    if(second == '=') {
       next_char();
       char tmp  = *_ptr;
       *_ptr = '\0';               // NULL terminate
